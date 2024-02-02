@@ -1,5 +1,14 @@
 # Implementation of Parallel and Distributed Compunting in Data Processing Works with HTCondor.
-
+## Table of Contents
+1. [Distributed Architecture Framework](#distributed-architecture-framework)
+2. [Project Data processing Workflow](#project-data-processing-workflow)
+3. [Setup Process](#setup-process)
+    - [Setting Up Amazon Web Services EC2 Instances](#setting-up-amazon-web-services-ec2-instances)
+    - [Setting Up HTCondor Cluster](#setting-up-htcondor-cluster)
+    - [Setting Up Network File System (NFS)](#setting-up-network-file-system-nfs)
+        - [Setting up NFS Server on Submission Host](#setting-up-nfs-server-on-submission-host)
+        - [Setting up NFS Client on Execution Host](#setting-up-nfs-client-on-execution-host)
+4. [Common Issues Faced](#common-issues-faced)
 ## Distributed Architecture Framework
 <div>
     <img src="images/architecture_framework.jpg" width="40%" height="40%" alt="Distributed Architecture Framework">
@@ -24,11 +33,11 @@ A brief introduction on the data processing workflow:
 - The data processing workflow in this project focuses on Exploratory Data Analysis and developing statistical models to predict Malaysia's total export value.
 - It consists of a total of three (3) phases - **Extraction and Loading**, **Data Transformation**, and **Data Analysis and Modelling**.
 - The workflow aims to derive valueable insights and create predictive models to support decision-making, with a detailed explanation and sample outputs provided for the data processing in a distributed environment.
-<br><br>
- 
-The following sections describe the process of replicating this project works.
 
-## Setting Up Amazon Web Services EC2 Instances.
+## Setup Process
+The following sections describe the setup process for replicating this project works.
+
+### Setting Up Amazon Web Services EC2 Instances.
 1. Spin up a total of four (4) EC2 Instances with the configurations stated below:
     - Instance 1:
         - Name: *CondorHost*
@@ -51,7 +60,7 @@ The following sections describe the process of replicating this project works.
     - Choose **All traffic** for **Type**, **Custom** for **Source**, and select the security group name in the box next to **Source**.
     - Save the configuration.
 
-## Setting Up HTCondor Cluster
+### Setting Up HTCondor Cluster
 1. Access the EC2 instances and perform updates.
     - Connect to the instances via SSH client.
     - Perform update on all instances using `sudo apt-get update`.
@@ -81,12 +90,12 @@ The following sections describe the process of replicating this project works.
         
     *Notes: If the above approach does not rectify the issue with missing components, consider exploring alternative troubleshooting techniques*
     
-## Setting Up Network File System (NFS)
+### Setting Up Network File System (NFS)
 NFS is used to allow the system to share the directoris and files with others over a network. In this setup, the Submission Host functions as the NFS Server, while the Execution Hosts act as the Clients.
 
 The setup procedures are as below (Reference from this [guide](https://ubuntu.com/server/docs/service-nfs)):
 
-### Setting up NFS Server on Submission Host
+#### Setting up NFS Server on Submission Host
 
 1. On the **Submission Host**, run the following commands to install the NFS Server on it.
     - ```sudo apt install nfs-kernel-server```
@@ -102,7 +111,7 @@ The setup procedures are as below (Reference from this [guide](https://ubuntu.co
     ```
 4. Run this command `sudo exportfs -a` to apply the new configuration.
 
-### Setting up NFS Client on Execution Host
+#### Setting up NFS Client on Execution Host
 
 1. On the **Execution Host**, run the following commands to install the NFS Client on it.
     - `sudo apt install nfs-common`
@@ -117,8 +126,8 @@ The setup procedures are as below (Reference from this [guide](https://ubuntu.co
 
     ***Notes**: Replace $Submission_Host_IP_Address with the actual IP address of your submission host. To verify the NFS setup between the Server and Client, attempt to create a new file within the directories that are mounted.*
 
-### Common Issues Faced:
-#### Issue 1: NFS Clients demount from NFS Server when AWS EC2 instances restarted.
+## Common Issues Faced:
+### Issue 1: NFS Clients demount from NFS Server when AWS EC2 instances restarted.
 When AWS EC2 instances are rebooted, NFS Clients may become disconnected from the NFS Server. An indicator of this problem is the error logs from submitted jobs, stating that specific files are not found from the specified directory.
 
 **Solution**: This issue can be resolved by remounting the directories from NFS Clients to the NFS Server. For more details see [Step 3 in Setting up NFS Client on Execution Host](#mounting).
