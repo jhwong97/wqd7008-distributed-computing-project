@@ -31,7 +31,7 @@ The following sections describe the process of replicating this project works.
     - Perform update on all instances using `sudo apt-get update`.
 
 2. Assigning HTCondor roles to each machines. In this  project, **CondorHost** is the Central Manager whereas **SubmHost** is the Submission Host. The remaining two instances - **Executor01** and **Executor02** are the Execution Hosts.
-    - To assign the Central Manager, run the following command line:
+    - To assign the Central Manager, run the following command line (Refer to this [guide](https://htcondor.readthedocs.io/en/latest/getting-htcondor/admin-quick-start.html#assigning-roles-to-machines)):
 
         ```curl -fsSL https://get.htcondor.org|sudo GET_HTCONDOR_PASSWORD="$htcondor_password" /bin/bash -s -- --no-dry-run --central-manager $central_manager_name```
     - To assign the Submission Host, run the following command line:
