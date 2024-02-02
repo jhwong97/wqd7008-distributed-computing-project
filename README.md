@@ -1,5 +1,31 @@
 # Implementation of Parallel and Distributed Compunting in Data Processing Works with HTCondor.
 
+## Distributed Architecture Framework
+<div>
+    <img src="images/architecture_framework.jpg" width="40%" height="40%" alt="Distributed Architecture Framework">
+</div>
+A brief introduction on the distributed architecture framework adopted:
+
+- The project adopts a distributed architecture framework using HT Condor for handling distributed computing resources collaboratively.
+- NFS (Network File System) is employed to provide shared storage between Execution Hosts and the Submission Host, enabling seamless file access across networks.
+- Key components of the HTCondor system include::
+    - **condor_collector**: Acts as a central hub for collecting and disseminating status information of execution hosts, facilitating communication within the pool.
+    - **condor_negotiator**: Uses information from the Collector to match submitted jobs with available resources, optimizing computing resource utilization.
+    - **condor_schedd** (Submission Host): Receives user-submitted jobs, advertises them to the Collector, and negotiates with the Negotiator to find suitable execution hosts based on job requirements and resource availability.
+    - **condor_startd** (Execution Host): Coordinates the execution process of jobs assigned by Condor Schedd, contributing to the processing of these jobs.
+- The framework ensures the Submission Host functions as the NFS server and the Execution Hosts as NFS clients, facilitating access to Python scripts and storage of results without the need to transfer files when submitting jobs through HTCondor.
+
+## Project Data Processing Workflow
+<div>
+    <img src="images/project_workflow.jpg" width="40%" height="40%" alt="Project Workflow">
+</div>
+A brief introduction on the data processing workflow:
+
+- The data processing workflow in this project focuses on Exploratory Data Analysis and developing statistical models to predict Malaysia's total export value.
+- It consists of a total of three (3) phases - **Extraction and Loading**, **Data Transformation**, and **Data Analysis and Modelling**.
+- The workflow aims to derive valueable insights and create predictive models to support decision-making, with a detailed explanation and sample outputs provided for the data processing in a distributed environment.
+<br><br>
+ 
 The following sections describe the process of replicating this project works.
 
 ## Setting Up Amazon Web Services EC2 Instances.
