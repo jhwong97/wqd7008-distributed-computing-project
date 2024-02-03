@@ -126,6 +126,28 @@ The setup procedures are as below (Reference from this [guide](https://ubuntu.co
 
     ***Notes**: Replace $Submission_Host_IP_Address with the actual IP address of your submission host. To verify the NFS setup between the Server and Client, attempt to create a new file within the directories that are mounted.*
 
+## How to Perform the Data Processing Works?
+After successfully setup the AWS EC2 instances, HTCondor Cluster and NFS, follow the steps in this section to perform the data processing works.
+
+### Descriptions on the File Directories at Submission Host
+In addition to the previous created directories - results and scripts, create another two directories - **output** and **job_submission** on the **Submission Host** by running this command `mkdir /output /job_submission`.
+
+The descriptions of each directory are as below:
+- **results**: Stores the data or outputs generated from the executed jobs which include .xlsx files and images.
+- **scripts**: Stores the necessary python scripts to be used for data processing works.
+- **output**: Stores the error log, output log and other log files generated from submitted jobs. It helps to provide necessary information and insights for debugging and monitor the job execution process.
+- **job_submission**: Stores the bash scripts and job submission files.
+
+***Notes**: Execution Hosts only need to mount to the **results** and **scripts** directories.*
+
+### Setting Up the Virtual Environment on Execution Hosts
+On the **Submission Host**, perform the following steps:
+1. Create a **.py** file in the **scripts** folder (Refer [this](scripts/venv_setup.py)).
+2. Create a bash script **.sh** file in the **job_submission** folder (Refer [this](job_submission/venv_setup.sh)).
+3. Create a job submission file **.sub** in the **job_submission** folder (Refer [this](job_submission/venv_setup.sub)).
+4. Test run it by submitting a job by running this command `condor_submit job_submission/venv_setup.sub`.
+5. Check the error logs and output logs in the **output** folder.
+
 ## Common Issues Faced:
 ### Issue 1: NFS Clients demount from NFS Server when AWS EC2 instances restarted.
 When AWS EC2 instances are rebooted, NFS Clients may become disconnected from the NFS Server. An indicator of this problem is the error logs from submitted jobs, stating that specific files are not found from the specified directory.
