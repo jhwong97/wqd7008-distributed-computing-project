@@ -1,0 +1,20 @@
+# run.dag 
+
+JOB task1 export_data.sub
+JOB task2 import_data.sub
+JOB task3 fred_data.sub
+JOB task4 imf_data.sub
+JOB task5 data_integration.sub
+JOB task6 data_modification.sub
+JOB task7 eda.sub
+JOB task8 modeling.sub
+
+# Define dependencies
+
+PARENT task1 CHILD task5
+PARENT task2 CHILD task5
+PARENT task3 CHILD task5
+PARENT task4 CHILD task5
+PARENT task5 CHILD task6
+PARENT task6 CHILD task7
+PARENT task6 CHILD task8

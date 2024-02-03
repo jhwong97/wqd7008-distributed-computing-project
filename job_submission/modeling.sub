@@ -1,0 +1,23 @@
+#!/bin/bash
+# HTCondor job submission script
+
+# Executable
+executable = modeling.sh
+
+# Output files
+output = /home/ubuntu/output/modeling.out
+# Error log
+error = /home/ubuntu/output/modeling.err
+# Log file
+log = /home/ubuntu/output/modeling.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /home/ubuntu/job_submission/venv_setup.sh
+
+request_cpus            = 2
+request_memory          = 1024MB
+request_disk            = 1G
+
+# Queue the job
+queue

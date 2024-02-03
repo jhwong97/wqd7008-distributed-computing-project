@@ -1,0 +1,23 @@
+#!/bin/bash
+# HTCondor job submission script
+
+# Executable
+executable = data_modification.sh
+
+# Output files
+output = /home/ubuntu/output/data_modification.out
+# Error log
+error = /home/ubuntu/output/data_modification.err
+# Log file
+log = /home/ubuntu/output/data_modification.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /home/ubuntu/job_submission/venv_setup.sh
+
+request_cpus            = 1
+request_memory          = 512M
+request_disk            = 1G
+
+# Queue the job
+queue
