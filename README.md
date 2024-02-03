@@ -148,6 +148,54 @@ On the **Submission Host**, perform the following steps:
 4. Test run it by submitting a job by running this command `condor_submit job_submission/venv_setup.sub`.
 5. Check the error logs and output logs in the **output** folder.
 
+### Submitting Jobs to Execute Data Processing Works.
+After setting up the virtual environment, perform the following steps to start the data processing works:
+1. In the **scripts** folder, create all the required python files as shown [here](scripts/). Within the same folder, create a **.env** to store the environment variables such as:
+    - csrf_token 
+    - cookies
+    - FRED_API
+
+    ***Notes**: Refer to [export.py](scripts/export.py), [import.py](scripts/import.py) and [fred.py](scripts/fred.py) to understand the usage of each environment variables.
+
+2. In the **job_submission** folder, create all the required bash scripts (**.sh**) and job submission files (**sub**) as shown [here](job_submission/).
+    - The explanations on the components in the **.sh** file are as below:
+        - By taking [export.sh](job_submission/export_data.sh) as an example,
+            ```
+            #!/bin/bash
+            chmod +x venv_setup.sh
+            ./venv_setup.sh
+            
+            cd /home/ubuntu/
+            source /home/ubuntu/venv/bin/activate
+            
+            time python3 /home/ubuntu/scripts/export.py
+            deactivate
+            ```
+        
+        - `chmod +x venv_setup.sh` is used to change the **venv_setup.sh** file to be executable.
+        - `./venv_setup.sh` is used to run the **venv_setup.sh** file.
+        - `source /home/ubuntu/venv/bin/activate` to activate the virtual environment.
+        - `time python3 /home/ubuntu/scripts/export.py` is used to record the time taken to execute the **export.py** script.
+        - `deactivate` to deactivate from the virtual environment.
+
+    - The explanations on the components in the **.sub** file are as below:
+        - **executable**: The file to be executed
+        - **output**: To save the outputs generated from the execution of the file to a specific path.
+        - **error**: To save the errors generated from the execution of the file to a specific path.
+        - **log**: To save the logs generated from the execution of the file to a specific path.
+        - **should_transfer_file**: To enable the transfer of files
+        - **when_to_transfer_output**: To set when the outputs will be transferred
+        - **transfer_input_files**:: To specify other files need to be transferred to the Execution Host.
+        - **request_cpus**: To request the number of CPU to execute the job.
+        - **request_memory**:To request the amount of memory to execute the job.
+        - **request_disk**:To request the amount of disk space to execute the job.
+        - **queue**: To wait for available resources.
+
+
+3. In the **job_submission** folder, create a **.dag** file as shown [here](job_submission/run.dag). The **.dag** file is used as a Workflow Management Engine.
+4. Submit the dag file by running this command `condor_submit_dag .dag`. Replace the .dag with your own dag file name.
+5. All the results generated will be stored in the **results** folder.
+
 ## Common Issues Faced:
 ### Issue 1: NFS Clients demount from NFS Server when AWS EC2 instances restarted.
 When AWS EC2 instances are rebooted, NFS Clients may become disconnected from the NFS Server. An indicator of this problem is the error logs from submitted jobs, stating that specific files are not found from the specified directory.
