@@ -205,3 +205,9 @@ When AWS EC2 instances are rebooted, NFS Clients may become disconnected from th
 #### Issue 2: NFS Client could not be started due to masked.
 **Solution**: Refer to this two references - [Reference A](https://unix.stackexchange.com/questions/308904/systemd-how-to-unmask-a-service-whose-unit-file-is-empty) and [Reference B](https://www.suse.com/support/kb/doc/?id=000019136).
 
+#### Issue 3: Errno 13
+[Errno 13]error means that the program tried to create new file or folder but it was denied due to write permission issues. We need to assign other users with write access permissions
+
+**Solution** : Run `chmod 777` on the directories  or files that you nwanted to change the permissions.
+
+For more info, read this [chmod](https://www.pluralsight.com/blog/it-ops/linux-file-permissions).
