@@ -8,7 +8,12 @@
     - [Setting Up Network File System (NFS)](#setting-up-network-file-system-nfs)
         - [Setting up NFS Server on Submission Host](#setting-up-nfs-server-on-submission-host)
         - [Setting up NFS Client on Execution Host](#setting-up-nfs-client-on-execution-host)
-4. [Common Issues Faced](#common-issues-faced)
+4. [How to Perform Data Processing Works?](#how-to-perform-the-data-processing-works)        
+    - [Descriptions on the File Directories at Submission Host](#descriptions-on-the-file-directories-at-submission-host)
+    - [Setting Up the Virtual Environment on Execution Hosts](#setting-up-the-virtual-environment-on-execution-hosts)
+    - [Submitting Jobs to Execute Data Processing Works](#submitting-jobs-to-execute-data-processing-works)
+5. [Common Issues Faced](#common-issues-faced)
+
 ## Distributed Architecture Framework
 <div>
     <img src="images/architecture_framework.jpg" width="40%" height="40%" alt="Distributed Architecture Framework">
