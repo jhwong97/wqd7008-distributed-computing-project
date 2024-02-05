@@ -16,7 +16,7 @@
 
 ## Distributed Architecture Framework
 <div>
-    <img src="images/architecture_framework.jpg" width="40%" height="40%" alt="Distributed Architecture Framework">
+    <img src="images/architecture_framework.jpg" width="60%" alt="Distributed Architecture Framework">
 </div>
 A brief introduction on the distributed architecture framework adopted:
 
@@ -31,7 +31,7 @@ A brief introduction on the distributed architecture framework adopted:
 
 ## Project Data Processing Workflow
 <div>
-    <img src="images/project_workflow.jpg" width="40%" height="40%" alt="Project Workflow">
+    <img src="images/project_workflow.jpg" width="60%" alt="Project Workflow">
 </div>
 A brief introduction on the data processing workflow:
 
