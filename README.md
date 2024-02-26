@@ -1,4 +1,4 @@
-# Implementation of Parallel and Distributed Compunting in Data Processing Works with HTCondor.
+# Implementation of Parallel and Distributed Computing in Data Processing Works with HTCondor.
 ## Table of Contents
 1. [Distributed Architecture Framework](#distributed-architecture-framework)
 2. [Project Data processing Workflow](#project-data-processing-workflow)
@@ -37,7 +37,7 @@ A brief introduction on the data processing workflow:
 
 - The data processing workflow in this project focuses on Exploratory Data Analysis and developing statistical models to predict Malaysia's total export value.
 - It consists of a total of three (3) phases - **Extraction and Loading**, **Data Transformation**, and **Data Analysis and Modelling**.
-- The workflow aims to derive valueable insights and create predictive models to support decision-making, with a detailed explanation and sample outputs provided for the data processing in a distributed environment.
+- The workflow aims to derive valuable insights and create predictive models to support decision-making, with a detailed explanation and sample outputs provided for the data processing in a distributed environment.
 
 ## Setup Process
 The following sections describe the setup process for replicating this project works.
@@ -61,7 +61,7 @@ The following sections describe the setup process for replicating this project w
 
 2. Configure the inbound rules for the selected security group to allow all traffic to pass within the security pool group.
     - Navigate to the AWS EC2 sidebar, and select the **Security Groups** from the drop down list of **Network & Security**.
-    - Select the used seciurity group name and edit the inbound rules.
+    - Select the used security group name and edit the inbound rules.
     - Choose **All traffic** for **Type**, **Custom** for **Source**, and select the security group name in the box next to **Source**.
     - Save the configuration.
 
@@ -96,7 +96,7 @@ The following sections describe the setup process for replicating this project w
     *Notes: If the above approach does not rectify the issue with missing components, consider exploring alternative troubleshooting techniques*
     
 ### Setting Up Network File System (NFS)
-NFS is used to allow the system to share the directoris and files with others over a network. In this setup, the Submission Host functions as the NFS Server, while the Execution Hosts act as the Clients.
+NFS is used to allow the system to share the directories and files with others over a network. In this setup, the Submission Host functions as the NFS Server, while the Execution Hosts act as the Clients.
 
 The setup procedures are as below (Reference from this [guide](https://ubuntu.com/server/docs/service-nfs)):
 
@@ -124,7 +124,7 @@ The setup procedures are as below (Reference from this [guide](https://ubuntu.co
 
 2. On the **Execution Host**, create two new directories - **results** and **scripts** by running this command `mkdir /results /scripts `.
 
-3. <a id="mounting"></a> Mount the created directories with the selected directories from the NFS-Server by runnning the following commands:
+3. <a id="mounting"></a> Mount the created directories with the selected directories from the NFS-Server by running the following commands:
     - `sudo mount $Submission_Host_IP_Address:/home/ubuntu/results /home/ubuntu/results`
 
     - `sudo mount $Submission_Host_IP_Address:/home/ubuntu/scripts /home/ubuntu/scripts`
